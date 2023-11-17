@@ -159,7 +159,6 @@ Tab & t:: Send("#5")
 !j:: Run("H:\a.typora\p.typora\Typora\Typora.exe")
 !k:: Run("C:\Program Files\XMind\XMind.exe")
 !c:: Run("explorer.exe")
-; !x:: Run("C:\Users\AOYU\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\rw.lnk")
 !v:: Run("C:\Windows\System32\cmd.exe")
 
 
