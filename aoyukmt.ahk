@@ -13,12 +13,44 @@
  }
  $#::#
  {
-    return
+     return
  }
 
+
+ ;窗口操作:
  ;关闭窗口
  !z::!F4
 
+ ;最小化当前窗口
+ !;::
+ {
+     WinActivate("A")
+     WinMinimize("A")
+     return
+ }
+
+ ;最大化当前窗口
+ !'::
+ {
+     WinActivate("A")
+     WinMaximize("A")
+     return
+ }
+
+ ;切换窗口
+ ; REMOVED: #NoEnv
+ SendMode("Input")
+ SetWorkingDir(A_ScriptDir)
+
+ Tab & q:: Send("#1")
+ Tab & w:: Send("#2")
+ Tab & e:: Send("#3")
+ Tab & r:: Send("#4")
+ Tab & t:: Send("#5")
+ Tab & y:: Send("#6")
+
+
+ ;文本填充操作
  ;邮箱填充
  :*:mailaoy::339983216@qq.com
  :*:mailyu::32563515381@qq.com
@@ -28,6 +60,7 @@
  ;密码填充
  :*:pwdaoy::339983216...@A
 
+ ;文本操作
  ;选中当前内容
  ; 映射 space + [ 为选择当前光标位置的内容
  Space & [::
@@ -51,12 +84,14 @@
  }
 
 
+ ;按键操作
  ;Home键
  Space & o::
  {
      Send("{HOME}")
      return
  }
+
 
  ;End 键
  Space & p::
@@ -137,96 +172,6 @@
  Space & l::
  {
      Send("{WheelDown}")
-     return
- }
- ;切换窗口
- ; REMOVED: #NoEnv
- SendMode("Input")
- SetWorkingDir(A_ScriptDir)
-
- Tab & q:: Send("#1")
- Tab & w:: Send("#2")
- Tab & e:: Send("#3")
- Tab & r:: Send("#4")
- Tab & t:: Send("#5")
- Tab & y:: Send("#6")
-
-
-;右键点击    
-Space & .::
-{
-    Click("Right")
-    return
-}
-
- ;最小化当前窗口
- !;::
- {
-     WinActivate("A")
-     WinMinimize("A")
-     return
- }
-
- ;最大化当前窗口
- !'::
- {
-     WinActivate("A")
-     WinMaximize("A")
-     return
- }
-
-
- ;程序快捷键
- !1:: Run("H:\a.listary\p.listary\Listary\Listary.exe")
- !2:: Run("C:\Program Files\Google\Chrome\Application\chrome.exe")
- !4:: Run("C:\Users\AOYU\AppData\Local\Programs\utools\uTools.exe")
- !5:: Run("H:\a.pot\p.pot\pot.exe")
- !6:: Run("H:\a.snipaste\p.snipaste\Snipaste-2.7.3-Beta-x64\Snipaste.exe")
- !7:: Run("H:\a.geek\p.geek\Uninstall Tool\UninstallTool.exe")
- !8:: Run("H:\a.qq\p.qqnt\QQ.exe")
- !9:: Run("H:\a.wechat\p.wechat\WeChat\WeChat.exe")
- !0:: Run("C:\Users\AOYU\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\me.lnk")
- !d:: Run("H:\a.douying\p.douying\douyin\douyin_launcher.exe")
- !f:: Run("H:\a.vscode\p.vscode\Microsoft VS Code\Code.exe")
- !g:: Run("H:\a.visualstudio\p.vstudio\vstudio.ide\Common7\IDE\devenv.exe")
- !h:: Run("H:\a.idea\p.idea\IntelliJ IDEA 2023.1.1\bin\idea64.exe")
- !j:: Run("H:\a.typora\p.typora\Typora\Typora.exe")
- !k:: Run("C:\Program Files\XMind\XMind.exe")
- !c:: Run("explorer.exe")
- !v:: Run("C:\Windows\System32\cmd.exe")
- !p:: Run("H:\a.lxmusic\p.lxmusic\lx-music-desktop\lx-music-desktop.exe")
-
-
- !b:: Run("https://www.bilibili.com/")
- !n:: Run("https://www.csdn.net/")
- !m:: Run("https://chat.openai.com/chat")
-
-
- ;创建文件夹
- !,::
- {
-     Send("^+n")
-     return
- }
-
- ; 使用Alt+，组合键来转到父文件夹
- ^,::
- {
-     Send("!{Left}")
-     return
- }
-
-
- ;减声音
- !-::
- {
-     Send ("{Volume_Down 3}")
-     return
- }
- ;加声音
- !=::
- {
-     Send ("{Volume_Up 3}")
      return
  }
 
@@ -318,6 +263,99 @@ Space & .::
  }
 
 
+ ;鼠标操作
+ ;右键点击
+ Space & .::
+ {
+     Click("Right")
+     return
+ }
+
+
+ ;程序启动操作
+ ;程序快捷键
+ !1:: Run("H:\a.listary\p.listary\Listary\Listary.exe")
+ !2:: Run("C:\Program Files\Google\Chrome\Application\chrome.exe")
+ !4:: Run("C:\Users\AOYU\AppData\Local\Programs\utools\uTools.exe")
+ !5:: Run("H:\a.pot\p.pot\pot.exe")
+ !6:: Run("H:\a.snipaste\p.snipaste\Snipaste-2.7.3-Beta-x64\Snipaste.exe")
+ !7:: Run("H:\a.geek\p.geek\Uninstall Tool\UninstallTool.exe")
+ !8:: Run("H:\a.qq\p.qqnt\QQ.exe")
+ !9:: Run("H:\a.wechat\p.wechat\WeChat\WeChat.exe")
+ !0:: Run("C:\Users\AOYU\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\me.lnk")
+ !d:: Run("H:\a.douying\p.douying\douyin\douyin_launcher.exe")
+ !f:: Run("H:\a.vscode\p.vscode\Microsoft VS Code\Code.exe")
+ !g:: Run("H:\a.visualstudio\p.vstudio\vstudio.ide\Common7\IDE\devenv.exe")
+ !h:: Run("H:\a.idea\p.idea\IntelliJ IDEA 2023.1.1\bin\idea64.exe")
+ !j:: Run("H:\a.typora\p.typora\Typora\Typora.exe")
+ !k:: Run("C:\Program Files\XMind\XMind.exe")
+ !c:: Run("explorer.exe")
+ !v:: Run("C:\Windows\System32\cmd.exe")
+ !p:: Run("H:\a.lxmusic\p.lxmusic\lx-music-desktop\lx-music-desktop.exe")
+
+
+ ;网址快捷操作
+ !b:: Run("https://www.bilibili.com/")
+ !n:: Run("https://www.csdn.net/")
+ !m:: Run("https://chat.openai.com/chat")
+
+
+ ;资源管理器操作
+ ;创建文件夹
+ !,::
+ {
+     Send("^+n")
+     return
+ }
+
+ ; 使用Alt+，组合键来转到父文件夹
+ ^,::
+ {
+     Send("!{Left}")
+     return
+ }
+
+
+ ;系统功能操作
+ ;减声音
+ !-::
+ {
+     Send ("{Volume_Down 3}")
+     return
+ }
+ ;加声音
+ !=::
+ {
+     Send ("{Volume_Up 3}")
+     return
+ }
+
+
+ ;输入法操作
+ ;中英文切换
+ Space & e::
+ {
+     SwitchIME(0x409)  ; 0x409 表示英文输入法
+     return
+ }
+
+ Space & c:: {
+     SwitchIME(0x804)  ; 0x804 表示中文输入法
+     return
+ }
+
+ SwitchIME(dwLanguage) {
+     PostMessage(0x50, 0, dwLanguage, , "A")
+ }
+
+ 
+ ;大小写切换
+ Space & m::
+ {
+     SetCapsLockState !GetKeyState("CapsLock", "T")
+ }
+
+ ;软件快捷键操作
  ;Typora按键映射
  #HotIf WinActive("ahk_exe Typora.exe",)
  {
