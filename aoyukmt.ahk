@@ -92,11 +92,17 @@
      return
  }
 
-
  ;End 键
  Space & p::
  {
      Send("{End}")
+     return
+ }
+
+ ;Delete键
+ Space & RShift::
+ {
+     Send("{BackSpace}")
      return
  }
 
@@ -330,25 +336,13 @@
      return
  }
 
-
- ;输入法操作
- ;中英文切换
- Space & e::
+ ;切换输入法
+ Space & i::
  {
-     SwitchIME(0x409)  ; 0x409 表示英文输入法
+     Send("{Shift}")
      return
  }
 
- Space & c:: {
-     SwitchIME(0x804)  ; 0x804 表示中文输入法
-     return
- }
-
- SwitchIME(dwLanguage) {
-     PostMessage(0x50, 0, dwLanguage, , "A")
- }
-
- 
  ;大小写切换
  Space & m::
  {
