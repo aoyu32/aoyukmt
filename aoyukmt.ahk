@@ -53,7 +53,7 @@
  ;文本填充操作
  ;邮箱填充
  :*:mailaoy::339983216@qq.com
- :*:mailyu::32563515381@qq.com
+ :*:mailyu::3256515381@qq.com
  :*:gmailaoy::aoyu3399@gmail.com
  ;手机号填充
  :*:telaoy::15527287795
@@ -63,26 +63,25 @@
  ;文本操作
  ;选中当前内容
  ; 映射 space + [ 为选择当前光标位置的内容
- Space & [::
- {
-     Send("{Shift Down}{Left 1}{Shift Up}")
-     return
- }
+ ;  Space & [::
+ ;  {
+ ;      Send("{Shift Down}{Left 2}{Shift Up}")
+ ;      return
+ ;  }
 
- ; 映射 space + [ 为选择当前光标位置的内容
- Space & ]::
- {
-     Send("{Shift Down}{Right 2}{Shift Up}")
-     return
- }
+ ;  ; 映射 space + [ 为选择当前光标位置的内容
+ ;  Space & ]::
+ ;  {
+ ;      Send("{Shift Down}{Right 3}{Shift Up}")
+ ;      return
+ ;  }
 
- ; 映射 space + enter 为选择当前行的内容
+ ;映射 space + enter 为选择当前行的内容
  Space & Enter::
  {
      Send("{Home}{Shift Down}{End}{Shift Up}")
      return
  }
-
 
  ;按键操作
  ;Home键
@@ -100,9 +99,16 @@
  }
 
  ;Delete键
- Space & RShift::
+ Space & `;::
  {
      Send("{BackSpace}")
+     return
+ }
+
+ ;撤销CTRL + Z
+ Space & z::
+ {
+     Send("^z")
      return
  }
 
@@ -113,7 +119,7 @@
      return
  }
 
- ;!
+ ;!w
  Space & 1::
  {
      Send("{!}")
@@ -123,7 +129,7 @@
  ;@
  Space & 2::
  {
-     Send("@")
+     Send("{@}")
      return
  }
 
@@ -136,33 +142,34 @@
  ;$
  Space & 4::
  {
-     Send("$")
+     Send("{$}")
      return
  }
+
  ;%
  Space & 5::
  {
-     Send("%")
+     Send("{%}")
      return
  }
 
  ;^
  space & 6::
  {
-     Send("^")
+     Send("{^}")
      return
  }
 
  ;~
  Space & 7::
  {
-     Send("&")
+     Send("{&}")
      return
  }
 
  Space & 8::
  {
-     Send("*")
+     Send("{*}")
      return
  }
  ;#
@@ -299,12 +306,10 @@
  !v:: Run("C:\Windows\System32\cmd.exe")
  !p:: Run("H:\a.lxmusic\p.lxmusic\lx-music-desktop\lx-music-desktop.exe")
 
-
  ;网址快捷操作
  !b:: Run("https://www.bilibili.com/")
  !n:: Run("https://www.csdn.net/")
  !m:: Run("https://chat.openai.com/chat")
-
 
  ;资源管理器操作
  ;创建文件夹
@@ -342,6 +347,30 @@
      Send("{Shift}")
      return
  }
+
+ ;切换输入法
+ Space & e::
+ { ; V1toV2: Added bracket
+     currentLayout := DllCall("GetKeyboardLayout", "UInt", 0, "UInt")
+     if (currentLayout != 0x0409) ; 英文布局的标识为 0x0409
+     {
+         PostMessage(0x50, 0, 0x0409, , "A") ; 发送切换到英文布局的消息
+     }
+     return
+ } ; V1toV2: Added Bracket before hotkey or Hotstring
+
+ Space & c::
+ { ; V1toV2: Added bracket
+
+     currentLayout := DllCall("GetKeyboardLayout", "UInt", 0, "UInt")
+
+     if (currentLayout != 0x0804) ; 中文布局的标识为 0x0804
+     {
+         PostMessage(0x50, 0, 0x0804, , "A") ; 发送切换到中文布局的消息
+     }
+     return
+ } ; V1toV2: Added bracket in the end
+
 
  ;大小写切换
  Space & m::
