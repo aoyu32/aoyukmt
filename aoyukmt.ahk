@@ -272,7 +272,7 @@
      return
  }
 
- Up & Left::
+ Left & Right::
  {
      Send("9")
      return
