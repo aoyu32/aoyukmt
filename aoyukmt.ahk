@@ -105,6 +105,7 @@
      return
  }
 
+<<<<<<< HEAD
  ;撤销CTRL + Z
  Space & z::
  {
@@ -112,6 +113,8 @@
      return
  }
 
+=======
+>>>>>>> 9913d2eb7f7dc3d32d63485d494930db68723504
  ;~
  Space & \::
  {
@@ -341,6 +344,7 @@
      return
  }
 
+<<<<<<< HEAD
  ;切换输入法
  Space & i::
  {
@@ -356,6 +360,19 @@
      {
          PostMessage(0x50, 0, 0x0409, , "A") ; 发送切换到英文布局的消息
      }
+=======
+
+ ;输入法操作()
+ ;中英文切换
+ Space & e::
+ {
+     SwitchIME(0x04090409)  ; 0x409 表示英文输入法
+     return
+ }
+
+ Space & c:: {
+     SwitchIME(0x00000804)  ; 0x804 表示中文输入法
+>>>>>>> 9913d2eb7f7dc3d32d63485d494930db68723504
      return
  } ; V1toV2: Added Bracket before hotkey or Hotstring
 
@@ -372,6 +389,10 @@
  } ; V1toV2: Added bracket in the end
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9913d2eb7f7dc3d32d63485d494930db68723504
  ;大小写切换
  Space & m::
  {
